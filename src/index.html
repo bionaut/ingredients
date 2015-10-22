@@ -29,11 +29,12 @@
 <div ng-controller="sampleCtrl as ctrl">
   <h2 class="ui block header">Sample</h2>
 
-  <i-form name="demoForm" submit="ctrl.handleSubmit(demoForm)" classes="additional classes">
+  <i-form x-id="formular1" name="demoForm" submit="ctrl.handleSubmit(demoForm)" classes="additional classes">
     <i-error form="demoForm"></i-error>
 
-    <i-row label="Test" optional="optional" required="true">
+    <i-row x-id="row1" label="Test" optional="optional" required="true">
       <i-field name="firstField"
+               x-id="field1"
                model="ctrl.firstField"
                size="20"
                read-only="ctrl.readonlyvec"
@@ -49,6 +50,7 @@
       </i-field>
 
       <i-select name="firstSelect"
+                x-id="select1"
                 data="ctrl.sampleData3"
                 model="ctrl.firstSelect"
                 return-as="value"
@@ -59,6 +61,7 @@
       </i-select>
 
       <i-select name="secondSelect"
+                x-id="select2"
                 data="ctrl.sampleCarsData2"
                 model="ctrl.secondSelect"
                 return-as="$index"
@@ -70,14 +73,13 @@
       </i-select>
     </i-row>
 
-    <i-switch options="ctrl.sampleData4" model="ctrl.m3" return-as="value" view-as="label" name="firstSwitch"
+    <i-switch options="ctrl.sampleData4" model="ctrl.m3" return-as="value" view-as="label" name="firstSwitch" x-id="switch1"
               validate="required"></i-switch>
 
-    <i-checkbox name="janci" model="ctrl.m4" validate="required"></i-checkbox>
+    <i-button name="submit" title="Submit" type="submit" i-disabled="!demoForm.$valid" x-id="button1" ></i-button>
+    <i-button name="someButton" title="New" x-id="button2"></i-button>
 
-    <i-button name="submit" title="Submit" type="submit" i-disabled="!demoForm.$valid"></i-button>
-    <i-button name="someButton" title="New"></i-button>
-
+    <i-checkbox x-id="checkbox1" name="janci"></i-checkbox>
 
     <!--<i-row>-->
     <i-select data="ctrl.sampleData"

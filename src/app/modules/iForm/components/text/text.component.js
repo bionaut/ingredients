@@ -12,7 +12,8 @@
         model: '=?',
         size: '@?',
         label: '@?',
-        inline: '@?'
+        inline: '@?',
+        xId: '@?'
       }
     };
   }

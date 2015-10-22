@@ -35,7 +35,8 @@
         tooltip: '@?',
         readOnly: '=?',
         validate: '@?',
-        format: '@?'
+        format: '@?',
+        xId: '@?'
       },
       controller: iSelectController,
       controllerAs: 'iSelect',

@@ -29,13 +29,14 @@
             var disabled = (a.disabled) ? ' ng-disabled="'+ a.disabled + '"' : '';
             var model = (a.model) ? ' ng-model="'+ a.model +'"' : '';
             var id = (a.id) ? ' id="'+ a.id || a.name +'"' : '';
+            var xId = (a.xId) ? ' x-id="'+ a.xId +'"' : '';
 
             var label = '<label class="radiolabel" for="'+ id +'">'+a.label+'</label>';
 
             var html =
               '<div' + fieldClasses + '>' +
                 '<input' +
-                  id +
+                  id + xId +
                   ' type="radio"' +
                   model +
                   inputName +

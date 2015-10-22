@@ -24,7 +24,8 @@
         name: '@?',
         validate: '@?',
         inactive: '=?',
-        counts: '=?'
+        counts: '=?',
+        xId: '@?'
       },
       controller: iSwitchController,
       controllerAs: 'vm',

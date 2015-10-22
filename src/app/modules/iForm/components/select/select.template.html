@@ -1,4 +1,4 @@
-<div class="i-select" style="width:{{size || 100}}%" ng-if="!native" ng-class="{inline: inline, nolabel: !label}" ng-model="model" i-valid="{{validate}}" name="{{name}}" label="{{label}}">
+<div x-id="{{xId}}" class="i-select" style="width:{{size || 100}}%" ng-if="!native" ng-class="{inline: inline, nolabel: !label}" ng-model="model" i-valid="{{validate}}" name="{{name}}" label="{{label}}">
   <label class="i-field-label" ng-if="label" ng-bind="label"></label>
   <rb-helper ng-if="tooltip" tooltip="{{tooltip}}"></rb-helper>
   <div class="read-only" ng-show="readOnly" ng-bind="iSelect.retrieveProperty(iSelect.selected, viewAs)"></div>
