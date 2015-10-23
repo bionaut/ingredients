@@ -15,7 +15,7 @@
         title:'@?',
         type: '@?',
         name: '@?',
-        xId: '@?',
+        xid: '@?',
         iDisabled: '=?'
       },
       controller: iButtonController,

@@ -16,7 +16,7 @@
         optional: '@?',
         tooltip: '@?',
         required: '@?',
-        xId: '@?'
+        xid: '@?'
       },
       controller: iRowController,
       controllerAs: 'iRow'

@@ -30,13 +30,13 @@
             var id = (a.id) ? ' id="'+ a.id +'"' : ' id="' +  a.name + '"';
             var validate = (a.validate) ? ' i-valid = "'+ a.validate + '"' : '';
 
-            var xId = (a.xId) ? ' x-id="'+ a.xId +'"' : '';
+            var xid = (a.xid) ? ' x-id="'+ a.xid +'"' : '';
             var label = '<label class="checkboxlabel" for="'+ (a.id || a.name) +'">' + (a.label || '') + '</label>';
 
             var html =
               '<div' + '>' +
                 '<input' +
-                  id + xId +
+                  id + xid +
                   ' type="checkbox"' +
                   model +
                   inputName +

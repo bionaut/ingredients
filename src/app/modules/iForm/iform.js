@@ -19,10 +19,10 @@
       var submit = (a.submit) ? ' ng-submit="'+ a.submit +'"' : '';
       var name = a.name || a.id;
       var classes = ' class="i-form ' + (a.classes || '') + ' "';
-      var xId = (a.xId) ? ' x-id="' + a.xId + '"': '';
+      var xid = (a.xid) ? ' x-id="' + a.xid + '"': '';
 
       var formElement =
-        '<form ' + classes + xId +
+        '<form ' + classes + xid +
           'name="' + name + '"' +
           'id="' + name + '" novalidate' +
                submit +

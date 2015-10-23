@@ -38,7 +38,7 @@
             var focus = (a.focus) ? ' autofocus' : '';
             var tooltip = (a.tooltip) ? ' <rb-helper tooltip="'+ a.tooltip +'"></rb-helper>' : '';
             var onEnter = (a.onEnter) ? ' on-enter="'+ a.onEnter +'"' : '';
-            var xId = (a.xId) ? ' x-id="'+ a.xId +'"' : '';
+            var xid = (a.xid) ? ' x-id="'+ a.xid +'"' : '';
 
             var required = (a.required) ? ' ng-required="'+a.required+'"' : '';
 
@@ -56,7 +56,7 @@
                   onEnter +
                   inputClasses +
                   id +
-                  xId +
+                  xid +
                   kind +
                   model +
                   labelAttr +

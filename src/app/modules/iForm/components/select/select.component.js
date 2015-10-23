@@ -36,7 +36,7 @@
         readOnly: '=?',
         validate: '@?',
         format: '@?',
-        xId: '@?'
+        xid: '@?'
       },
       controller: iSelectController,
       controllerAs: 'iSelect',
