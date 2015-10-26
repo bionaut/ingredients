@@ -54,9 +54,10 @@
       '$scope',
       '$timeout',
       '$element',
-      'iUtils'
+      'iUtils',
+      '$rootScope'
     ];
-    function iSelectController($scope, $timeout, $element, iUtils) {
+    function iSelectController($scope, $timeout, $element, iUtils, $rootScope) {
 
       var iSelect = this;
       var s = $scope;
@@ -121,6 +122,7 @@
       }
 
       function toggleList() {
+        $rootScope.$broadcast('closeContextual');
         generateList();
         iSelect.listToggle = !iSelect.listToggle;
       }
