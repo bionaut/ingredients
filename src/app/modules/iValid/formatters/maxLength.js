@@ -9,8 +9,12 @@
     iValidProvider.newFormatter('maxLength', maxLength);
 
     function maxLength(value, max) {
-      if (value == undefined) {
+      if (angular.isUndefined(value)) {
         return false;
+      }
+
+      if (value === null) {
+        return true;
       }
 
       value = value.toString();
