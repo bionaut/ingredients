@@ -137,9 +137,9 @@
       }
 
       function handleModelChange(nVal, oVal) {
-        if (typeof nVal === 'undefined') {
-          return;
-        }
+        iSelect.searchQuery = nVal;
+        if (angular.isUndefined(nVal)) return void 0;
+
         angular.forEach(s.data, function (value, index) {
           if (value[s.returnAs] === nVal) {
             if (typeof s.change !== 'undefined' && (nVal !== oVal) && (typeof oVal !== 'undefined')) {
