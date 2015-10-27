@@ -86,7 +86,7 @@
 
       s.$on('closeContextual', function () {
         iSelect.listToggle = false;
-        s.$apply();
+        s.$applyAsync();
       });
 
       function handleRefresh(nVal, oVal) {
