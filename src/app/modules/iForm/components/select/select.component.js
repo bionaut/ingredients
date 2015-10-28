@@ -18,7 +18,10 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'app/modules/iForm/components/select/select.template.html',
-      scope: {
+      scope: {},
+      controller: iSelectController,
+      controllerAs: 'vm',
+      bindToController: {
         data: '=',
         returnAs: '@',
         viewAs: '@',
@@ -38,8 +41,6 @@
         format: '@?',
         xid: '@?'
       },
-      controller: iSelectController,
-      controllerAs: 'iSelect',
       link: linkFn
     };
 
@@ -59,16 +60,16 @@
     ];
     function iSelectController($scope, $timeout, $element, iUtils, $rootScope) {
 
-      var iSelect = this;
+      var vm = this;
       var s = $scope;
 
       // methods
-      iSelect.select = handleSelect;
-      iSelect.toggleList = toggleList;
-      iSelect.retrieveProperty = retrieveProperty;
-      iSelect.reset = reset;
-      iSelect.openList = openList;
-      iSelect.handleInputEvents = handleInputEvents;
+      vm.select = handleSelect;
+      vm.toggleList = toggleList;
+      vm.retrieveProperty = retrieveProperty;
+      vm.reset = reset;
+      vm.openList = openList;
+      vm.handleInputEvents = handleInputEvents;
 
       // convert source data
       dataTypeConverse();
@@ -79,13 +80,13 @@
       });
 
       // watch data property for changes
-      s.$watch('data', handleRefresh);
+      s.$watch('vm.data', handleRefresh);
 
       // watch model
-      s.$watch('model', handleModelChange);
+      s.$watch('vm.model', handleModelChange);
 
       s.$on('closeContextual', function () {
-        iSelect.listToggle = false;
+        vm.listToggle = false;
         s.$applyAsync();
       });
 
@@ -96,20 +97,20 @@
       }
 
       function setDefault() {
-        if (s.default) {
-          if (s.data && s.isArray) {
-            handleSelect(s.data[s.default]);
+        if (vm.default) {
+          if (vm.data && vm.isArray) {
+            handleSelect(vm.data[vm.default]);
           }
-          if (s.data && s.isObject) {
-            handleSelect(s.data[s.default]);
+          if (vm.data && vm.isObject) {
+            handleSelect(vm.data[vm.default]);
           }
         }
       }
 
       function openList() {
-        if (!iSelect.searchQuery) return void 0;
+        if (!vm.searchQuery) return void 0;
         generateList();
-        iSelect.listToggle = true;
+        vm.listToggle = true;
       }
 
       function generateList() {
@@ -124,28 +125,28 @@
       function toggleList() {
         $rootScope.$broadcast('closeContextual');
         generateList();
-        iSelect.listToggle = !iSelect.listToggle;
+        vm.listToggle = !vm.listToggle;
       }
 
       function handleSelect(item) {
-        var index = iUtils.getIndex(item, s.data);
-        iSelect.selected = item;
-        s.model = (s.returnAs === '$index') ? index : iSelect.selected[s.returnAs];
-        iSelect.searchQuery = (s.searchable) ? retrieveProperty(iSelect.selected, s.viewAs) : '';
-        iSelect.match = true;
-        iSelect.listToggle = false;
+        var index = iUtils.getIndex(item, vm.data);
+        vm.selected = item;
+        vm.model = (vm.returnAs === '$index') ? index : item[vm.returnAs];
+        vm.searchQuery = (vm.searchable) ? retrieveProperty(vm.selected, vm.viewAs) : '';
+        vm.match = true;
+        vm.listToggle = false;
       }
 
       function handleModelChange(nVal, oVal) {
-        iSelect.searchQuery = nVal;
+        vm.searchQuery = nVal;
         if (angular.isUndefined(nVal)) return void 0;
 
-        angular.forEach(s.data, function (value, index) {
-          if (value[s.returnAs] === nVal) {
-            if (typeof s.change !== 'undefined' && (nVal !== oVal) && (typeof oVal !== 'undefined')) {
-              s.change(nVal);
+        angular.forEach(vm.data, function (item, index) {
+          if (item[vm.returnAs] === nVal) {
+            if (typeof vm.change !== 'undefined' && (nVal !== oVal) && (typeof oVal !== 'undefined')) {
+              vm.change(nVal);
             }
-            handleSelect(value);
+            handleSelect(item);
           }
         });
       }
@@ -157,38 +158,39 @@
       }
 
       function dataTypeConverse() {
-        if (!s.data) return;
-        if (s.data.constructor === Array) {
-          s.isArray = true;
-          s.isObject = false;
-        } else if (typeof s.data === 'object' && (s.data instanceof Array === false)) {
-          s.isObject = true;
-          s.isArray = false;
+        if (!vm.data) return;
+        if (vm.data.constructor === Array) {
+          vm.isArray = true;
+          vm.isObject = false;
+        } else if (typeof vm.data === 'object' && (vm.data instanceof Array === false)) {
+          vm.isObject = true;
+          vm.isArray = false;
         }
 
       }
 
       function reset() {
-        iSelect.selected = null;
-        s.model = null;
-        iSelect.searchQuery = null;
-        iSelect.listToggle = false;
+        vm.selected = null;
+        vm.model = null;
+        vm.searchQuery = null;
+        vm.listToggle = false;
       }
 
       function handleInputEvents() {
-        var _lng = (s.isObject) ? Object.keys(s.data).length : s.data.length;
+        var _lng = (vm.isObject) ? Object.keys(vm.data).length : vm.data.length;
         var _count = 0;
-        iSelect.match = false;
-        iSelect.notInListWarning = false;
+        vm.match = false;
+        vm.notInListWarning = false;
 
-        angular.forEach(s.data, function (item) {
-          if (iSelect.searchQuery && item[s.viewAs].toString().toLowerCase() === iSelect.searchQuery.toString().toLowerCase()) {
-            iSelect.match = true;
+        angular.forEach(vm.data, function (item) {
+          if (vm.searchQuery && item[vm.viewAs].toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
+            vm.match = true;
             handleSelect(item);
           }
 
-          if (++_count === _lng && !iSelect.match) {
-            iSelect.notInListWarning = true;
+          if (++_count === _lng && !vm.match) {
+            vm.notInListWarning = true;
+            vm.searchQuery = '';
           }
 
         });
