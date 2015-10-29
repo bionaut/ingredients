@@ -9,7 +9,7 @@
 
   <label class="i-field-label" ng-if="vm.label" ng-bind="vm.label"></label>
   <rb-helper ng-if="vm.tooltip" tooltip="{{vm.tooltip}}"></rb-helper>
-  <div class="read-only" ng-show="vm.readOnly" ng-bind="vm.retrieveProperty(vm.handleSelected, vm.viewAs)"></div>
+  <div class="read-only" ng-show="vm.readOnly" ng-bind="vm.retrieveProperty(vm.selected, vm.viewAs)"></div>
   <div ng-hide="vm.readOnly">
     <div ng-hide="vm.searchable" class="current-value" ng-click="vm.toggleList()">
       <span>{{ vm.retrieveProperty(vm.selected, vm.viewAs) || vm.placeholder }}</span>
