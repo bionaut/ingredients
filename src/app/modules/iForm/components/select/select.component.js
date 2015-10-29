@@ -3,12 +3,6 @@
  */
 
 
-// TODO: show/hide arrow
-// TODO: show/hide label
-// TODO: inline label
-// TODO: bindToController
-
-
 (function () {
   'use strict';
   angular.module('select.component', [])
@@ -64,7 +58,7 @@
       var s = $scope;
 
       // methods
-      vm.select = handleSelect;
+      vm.handleSelect = handleSelect;
       vm.toggleList = toggleList;
       vm.retrieveProperty = retrieveProperty;
       vm.reset = reset;
@@ -97,13 +91,8 @@
       }
 
       function setDefault() {
-        if (vm.default) {
-          if (vm.data && vm.isArray) {
-            handleSelect(vm.data[vm.default]);
-          }
-          if (vm.data && vm.isObject) {
-            handleSelect(vm.data[vm.default]);
-          }
+        if (vm.default && vm.data) {
+          handleSelect(vm.data[vm.default]);
         }
       }
 
@@ -133,7 +122,6 @@
         vm.selected = item;
         vm.model = (vm.returnAs === '$index') ? index : item[vm.returnAs];
         vm.searchQuery = (vm.searchable) ? retrieveProperty(vm.selected, vm.viewAs) : '';
-        vm.match = true;
         vm.listToggle = false;
       }
 
@@ -166,13 +154,12 @@
           vm.isObject = true;
           vm.isArray = false;
         }
-
       }
 
       function reset() {
-        vm.selected = null;
-        vm.model = null;
-        vm.searchQuery = null;
+        vm.selected = undefined;
+        vm.model = undefined;
+        vm.searchQuery = undefined;
         vm.listToggle = false;
       }
 
@@ -180,7 +167,6 @@
         var _lng = (vm.isObject) ? Object.keys(vm.data).length : vm.data.length;
         var _count = 0;
         vm.match = false;
-        vm.notInListWarning = false;
 
         angular.forEach(vm.data, function (item) {
           if (vm.searchQuery && item[vm.viewAs].toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
@@ -189,16 +175,15 @@
           }
 
           if (++_count === _lng && !vm.match) {
-            vm.notInListWarning = true;
-            vm.searchQuery = '';
+            vm.searchQuery = undefined;
+            vm.model = undefined;
+            vm.selected = undefined;
           }
-
         });
       }
     }
 
     return directive;
-
   }
 
 })();

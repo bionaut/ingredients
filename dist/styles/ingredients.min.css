@@ -752,6 +752,11 @@ button.i-button:active {
   cursor: pointer;
 }
 
+.ng-submitted .i-select.ng-invalid .i-select-search input,
+.ng-submitted .i-select.ng-invalid-required .i-select-search input {
+  border-color: #ff594d;
+}
+
 .i-switch {
   float: left;
   clear: none;

@@ -102,11 +102,6 @@
 
             if (iValid.formatters[key] === undefined) {return console.info('Unknown formatter: ' + key)}
 
-            // debug
-            //console.log('if(iValid.formatters[key].definition(value, param))');
-            //console.log(iValid.formatters[key].definition(value, param));
-            //console.log(iValid.formatters[key]);
-
             if(iValid.formatters[key].definition(value, param)){
 
               // if OK

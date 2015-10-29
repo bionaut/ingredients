@@ -30,6 +30,7 @@
   <h2 class="ui block header">Sample</h2>
 
   <i-form xid="formular1" name="demoForm" submit="ctrl.handleSubmit(demoForm)" classes="additional classes">
+    <i-error></i-error>
     <i-select name="firstSelect"
               xid="select1"
               data="ctrl.banks"
@@ -37,13 +38,17 @@
               return-as="code"
               view-as="code"
               searchable="true"
-              size="30"
               format="maxLength:4"
-              validate="required">
+              validate="required"
+              size="30">
     </i-select>
     <br/>
     <br/>
     <a ng-click="ctrl.selectedBank='' ">{{ctrl.selectedBank}}</a>
+    <br/>
+
+    <h1> selectedBank: {{ctrl.selectedBank}}</h1>
+    <i-button name="submit" title="Submit" type="submit" i-disabled="demoForm.$invalid" xid="button1" ></i-button>
   </i-form>
 
 </div>
