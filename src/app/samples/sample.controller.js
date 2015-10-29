@@ -598,12 +598,13 @@
 
     ctrl.sampleData2 = ['Item 1', 'Item 2'];
 
+    ctrl.nullModel = null;
+
 
     $timeout(function () {
       //ctrl.m1 = 1;
       //ctrl.m2 = 1;
       //ctrl.m3 = 1;
-      ctrl.selectedBank = 5500;
 
     }, 5000)
 

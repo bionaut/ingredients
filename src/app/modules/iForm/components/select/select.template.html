@@ -17,7 +17,7 @@
     <div ng-show="vm.searchable" class="i-select-search">
       <input type="text" ng-model="vm.searchQuery"
              ng-change="vm.openList()" placeholder="{{vm.placeholder}}" on-enter="vm.handleInputEvents()"
-             ng-blur="vm.handleInputEvents()" i-format="{{vm.format}}"/>
+             ng-blur="vm.handleInputEvents()" i-format="{{vm.format}}" />
 
       <div class="reset-button" ng-if="vm.searchable && vm.searchQuery" ng-click="vm.reset()">
         <i class="ion-ios-close-empty"></i>

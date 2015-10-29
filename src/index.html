@@ -34,22 +34,17 @@
     <i-select name="firstSelect"
               xid="select1"
               data="ctrl.banks"
-              model="ctrl.selectedBank"
+              model="ctrl.nullModel"
               return-as="code"
               view-as="code"
               searchable="true"
               format="maxLength:4"
-              default="0"
               validate="required"
               size="30">
     </i-select>
-
-    <i-select data="ctrl.sampleData3" model="model1" view-as="texts.en">
-
-    </i-select>
     <br/>
     <br/>
-    <a ng-click="ctrl.selectedBank='' ">{{ctrl.selectedBank}}</a>
+    <a ng-click="ctrl.nullModel='' ">{{ctrl.nullModel}}</a>
     <br/>
 
     <h1> selectedBank: {{ctrl.selectedBank}}</h1>

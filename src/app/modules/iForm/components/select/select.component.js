@@ -65,6 +65,8 @@
       vm.openList = openList;
       vm.handleInputEvents = handleInputEvents;
 
+
+
       // convert source data
       dataTypeConverse();
 
@@ -91,6 +93,7 @@
       }
 
       function setDefault() {
+        vm.model = (vm.model===null || vm.model===undefined)? '': vm.model;
         if (vm.default && vm.data) {
           handleSelect(vm.data[vm.default]);
         }
@@ -166,21 +169,24 @@
       function handleInputEvents() {
         var _lng = (vm.isObject) ? Object.keys(vm.data).length : vm.data.length;
         var _count = 0;
+        var _debounce = 100;
         vm.match = false;
 
-        angular.forEach(vm.data, function (item) {
-          var _item = retrieveProperty(item, vm.viewAs);
-          if (vm.searchQuery && _item.toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
-            vm.match = true;
-            handleSelect(item);
-          }
+        $timeout(function () {
+          angular.forEach(vm.data, function (item) {
+            var _item = retrieveProperty(item, vm.viewAs);
+            if (vm.searchQuery && _item.toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
+              vm.match = true;
+              handleSelect(item);
+            }
 
-          if (++_count === _lng && !vm.match) {
-            vm.searchQuery = undefined;
-            vm.model = undefined;
-            vm.selected = undefined;
-          }
-        });
+            if (++_count === _lng && !vm.match) {
+              vm.searchQuery = undefined;
+              vm.model = undefined;
+              vm.selected = undefined;
+            }
+          });
+        }, _debounce)
       }
     }
 
