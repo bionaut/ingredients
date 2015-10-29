@@ -169,7 +169,8 @@
         vm.match = false;
 
         angular.forEach(vm.data, function (item) {
-          if (vm.searchQuery && item[vm.viewAs].toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
+          var _item = retrieveProperty(item, vm.viewAs);
+          if (vm.searchQuery && _item.toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
             vm.match = true;
             handleSelect(item);
           }

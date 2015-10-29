@@ -603,6 +603,8 @@
       //ctrl.m1 = 1;
       //ctrl.m2 = 1;
       //ctrl.m3 = 1;
+      ctrl.selectedBank = 5500;
+
     }, 5000)
 
   }

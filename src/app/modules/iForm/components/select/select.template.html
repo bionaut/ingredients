@@ -12,7 +12,7 @@
   <div class="read-only" ng-show="vm.readOnly" ng-bind="vm.retrieveProperty(vm.handleSelected, vm.viewAs)"></div>
   <div ng-hide="vm.readOnly">
     <div ng-hide="vm.searchable" class="current-value" ng-click="vm.toggleList()">
-      <span>{{ vm.retrieveProperty(vm.handleSelected, vm.viewAs) || vm.placeholder }}</span>
+      <span>{{ vm.retrieveProperty(vm.selected, vm.viewAs) || vm.placeholder }}</span>
     </div>
     <div ng-show="vm.searchable" class="i-select-search">
       <input type="text" ng-model="vm.searchQuery"
