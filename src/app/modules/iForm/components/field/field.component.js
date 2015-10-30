@@ -39,6 +39,7 @@
             var tooltip = (a.tooltip) ? ' <rb-helper tooltip="'+ a.tooltip +'"></rb-helper>' : '';
             var onEnter = (a.onEnter) ? ' on-enter="'+ a.onEnter +'"' : '';
             var xid = (a.xid) ? ' x-id="'+ a.xid +'"' : '';
+            var maxLength= (a.maxLength) ? ' i-max-length="'+ a.maxLength +'"' : '';
 
             var required = (a.required) ? ' ng-required="'+a.required+'"' : '';
 
@@ -70,6 +71,7 @@
                   iValid +
                   required +
                   focus +
+                  maxLength +
                 '/>' +
                 '<div class="read-only" ng-show="'+ a.readOnly+'" ng-bind="'+ a.model +'"></div>' +
                 '<div class="fieldErrorMessages" ng-if="!form.$globalErrors" ng-show="form.$submitted">' +

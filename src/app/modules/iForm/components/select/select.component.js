@@ -33,6 +33,7 @@
         readOnly: '=?',
         validate: '@?',
         format: '@?',
+        maxLength: '@?',
         xid: '@?'
       },
       link: linkFn

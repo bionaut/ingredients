@@ -16,6 +16,7 @@
       'button.component',
       'alert.component',
       'error.component',
-      'onEnter.component'
+      'onEnter.component',
+      'iMaxLength.component'
     ]);
 })();

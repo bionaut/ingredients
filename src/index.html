@@ -38,7 +38,7 @@
               return-as="code"
               view-as="code"
               searchable="true"
-              format="maxLength:4"
+              max-length="4"
               validate="required"
               size="30">
     </i-select>
@@ -48,6 +48,10 @@
     <br/>
 
     <h1> selectedBank: {{ctrl.selectedBank}}</h1>
+
+    <i-field max-length="4" model="ctrl.testField" debounce="200"></i-field>
+    <h4>{{ctrl.testField}}</h4>
+
     <i-button name="submit" title="Submit" type="submit" i-disabled="demoForm.$invalid" xid="button1" ></i-button>
   </i-form>
 

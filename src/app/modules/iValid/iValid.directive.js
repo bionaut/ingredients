@@ -1,4 +1,4 @@
-(function(){
+(function () {
   'use strict';
   angular.module('iValid.module')
     .directive('iValid', iValidate)
@@ -10,7 +10,7 @@
     'iUtils'
   ];
   function iValidate($parse, iValid, iUtils) {
-    return{
+    return {
       restrict: 'A',
       require: '?ngModel',
       link: LinkFn
@@ -22,12 +22,12 @@
 
         var validationObject = iUtils.parseValidators(attrs.iValid);
 
-        angular.forEach(validationObject, function(rules, key) {
+        angular.forEach(validationObject, function (rules, key) {
           var validator = iValid.validators[key];
 
           if (validator.dynamic) {
-            ngModel.$validators[key] = function(value) {
-              var parsedRules = rules.map(function(rule) {
+            ngModel.$validators[key] = function (value) {
+              var parsedRules = rules.map(function (rule) {
                 return $parse(rule);
               });
               var args = [value, scope].concat(parsedRules);
@@ -35,7 +35,7 @@
             };
             scope.$watchGroup(rules, ngModel.$validate, true);
           } else {
-            ngModel.$validators[key] = function(value) {
+            ngModel.$validators[key] = function (value) {
               var args = [value].concat(rules);
               return validator.definition.apply(this, args);
             };
@@ -47,11 +47,11 @@
         scope.$watch('errors', function () {
           scope.errors = ngModel.$error;
           scope.isDirty = ngModel.$dirty;
-        },true);
+        }, true);
 
         // adds error object to scope of the field
 
-        scope.checkErrors  = checkErrors;
+        scope.checkErrors = checkErrors;
         scope.getErrorMessage = getErrorMessage;
 
       }
@@ -68,7 +68,10 @@
       }
 
       function getErrorMessage(key) {
-        if (typeof iValid.validators[key] === 'undefined' ){ console.info('Unknown validator: ', key); return void 0;}
+        if (typeof iValid.validators[key] === 'undefined') {
+          console.info('Unknown validator: ', key);
+          return void 0;
+        }
         return iValid.validators[key].message;
       }
 
@@ -97,12 +100,14 @@
 
           var view_value;
 
-          function formatFn(value){
+          function formatFn(value) {
             var return_value;
 
-            if (iValid.formatters[key] === undefined) {return console.info('Unknown formatter: ' + key)}
+            if (iValid.formatters[key] === undefined) {
+              return console.info('Unknown formatter: ' + key)
+            }
 
-            if(iValid.formatters[key].definition(value, param)){
+            if (iValid.formatters[key].definition(value, param)) {
 
               // if OK
               return_value = value;
