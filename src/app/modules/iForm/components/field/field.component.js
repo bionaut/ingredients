@@ -38,7 +38,7 @@
             var focus = (a.focus) ? ' autofocus' : '';
             var tooltip = (a.tooltip) ? ' <rb-helper tooltip="'+ a.tooltip +'"></rb-helper>' : '';
             var onEnter = (a.onEnter) ? ' on-enter="'+ a.onEnter +'"' : '';
-            var xid = (a.xid) ? ' x-id="'+ a.xid +'"' : '';
+            var xid = (a.xid) ? ' xid="'+ a.xid +'"' : '';
             var maxLength= (a.maxLength) ? ' i-max-length="'+ a.maxLength +'"' : '';
 
             var required = (a.required) ? ' ng-required="'+a.required+'"' : '';
