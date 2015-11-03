@@ -837,6 +837,11 @@ button.i-button:active {
   padding: 0 10px;
 }
 
+.ng-submitted .i-switch.ng-invalid .i-switch-search input,
+.ng-submitted .i-switch.ng-invalid-required .i-switch-search input {
+  border-color: #ff594d;
+}
+
 .i-text {
   float: left;
   clear: none;
