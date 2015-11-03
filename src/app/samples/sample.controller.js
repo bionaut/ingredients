@@ -600,9 +600,10 @@
 
     ctrl.nullModel = null;
 
+    ctrl.m1 = '5500';
 
     $timeout(function () {
-      //ctrl.m1 = 1;
+      ctrl.m1 = '6300';
       //ctrl.m2 = 1;
       //ctrl.m3 = 1;
 

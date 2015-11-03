@@ -44,15 +44,13 @@
     </i-select>
     <br/>
     <br/>
-    <a ng-click="ctrl.nullModel='' ">{{ctrl.nullModel}}</a>
+    <a ng-click="ctrl.nullModel=undefined">{{ctrl.nullModel}}</a>
     <br/>
 
-    <h1> selectedBank: {{ctrl.selectedBank}}</h1>
+    <!--<i-field max-length="4" model="ctrl.testField" debounce="200"></i-field>-->
+    <!--<h4>{{ctrl.testField}}</h4>-->
+    <!--<i-button name="submit" title="Submit" type="submit" i-disabled="demoForm.$invalid" xid="button1" ></i-button>-->
 
-    <i-field max-length="4" model="ctrl.testField" debounce="200"></i-field>
-    <h4>{{ctrl.testField}}</h4>
-
-    <i-button name="submit" title="Submit" type="submit" i-disabled="demoForm.$invalid" xid="button1" ></i-button>
   </i-form>
 
 </div>

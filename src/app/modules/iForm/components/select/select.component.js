@@ -51,9 +51,10 @@
       '$timeout',
       '$element',
       'iUtils',
-      '$rootScope'
+      '$rootScope',
+      '$q'
     ];
-    function iSelectController($scope, $timeout, $element, iUtils, $rootScope) {
+    function iSelectController($scope, $timeout, $element, iUtils, $rootScope, $q) {
 
       var vm = this;
       var s = $scope;
@@ -67,14 +68,8 @@
       vm.handleInputEvents = handleInputEvents;
 
 
-
-      // convert source data
-      dataTypeConverse();
-
-      // set default value
-      $timeout(function () {
-        setDefault();
-      });
+      //init
+      init();
 
       // watch data property for changes
       s.$watch('vm.data', handleRefresh);
@@ -87,14 +82,43 @@
         s.$applyAsync();
       });
 
+
+      function init() {
+        vm.items = {
+          returns: [],
+          views: []
+        };
+
+        var _deferred = $q.defer();
+        var _promise = _deferred.promise;
+        _promise
+          .then(function () {
+            angular.forEach(vm.data, function (item) {
+              vm.items.returns.push(retrieveProperty(item, vm.returnAs));
+              vm.items.views.push(retrieveProperty(item, vm.viewAs).toString().toLowerCase());
+            });
+          }).then(function () {
+            ensureModel();
+            prepareData();
+            setDefault();
+          });
+        _deferred.resolve();
+      }
+
+      function ensureModel() {
+
+        //check if in list
+        if (vm.items.returns.indexOf(vm.model) === -1) {
+          vm.model = undefined;
+        }
+      }
+
       function handleRefresh(nVal, oVal) {
-        if (nVal === oVal) return;
-        dataTypeConverse();
-        setDefault();
+        if (nVal === oVal) return void 0;
+        init();
       }
 
       function setDefault() {
-        vm.model = (vm.model===null || vm.model===undefined)? '': vm.model;
         if (vm.default && vm.data) {
           handleSelect(vm.data[vm.default]);
         }
@@ -149,7 +173,7 @@
         return objectPath.get(obj, path);
       }
 
-      function dataTypeConverse() {
+      function prepareData() {
         if (!vm.data) return;
         if (vm.data.constructor === Array) {
           vm.isArray = true;
