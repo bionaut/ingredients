@@ -42,7 +42,7 @@
 
 
     function linkFn(s, e, a) {
-      e.on('click', function (ev) {
+      e.on('click mousedown', function (ev) {
         s.iSelect.blurred = false;
         ev.stopPropagation();
       })

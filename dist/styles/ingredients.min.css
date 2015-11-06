@@ -88,6 +88,11 @@
   box-shadow: 0 0 5px -1px #616161;
 }
 
+.ng-cloak,
+[ng-cloak] {
+  display: none!important;
+}
+
 .i-modal {
   position: fixed;
   top: 0;
