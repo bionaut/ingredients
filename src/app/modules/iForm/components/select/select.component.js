@@ -14,7 +14,7 @@
       templateUrl: 'app/modules/iForm/components/select/select.template.html',
       scope: {},
       controller: iSelectController,
-      controllerAs: 'vm',
+      controllerAs: 'iSelect',
       bindToController: {
         data: '=',
         returnAs: '@',
@@ -34,6 +34,7 @@
         validate: '@?',
         format: '@?',
         maxLength: '@?',
+        preventReadOnly: '@?',
         xid: '@?'
       },
       link: linkFn
@@ -42,6 +43,7 @@
 
     function linkFn(s, e, a) {
       e.on('click', function (ev) {
+        s.iSelect.blurred = false;
         ev.stopPropagation();
       })
     }
@@ -56,35 +58,39 @@
     ];
     function iSelectController($scope, $timeout, $element, iUtils, $rootScope, $q) {
 
-      var vm = this;
+      var iSelect = this;
       var s = $scope;
 
       // methods
-      vm.handleSelect = handleSelect;
-      vm.toggleList = toggleList;
-      vm.retrieveProperty = retrieveProperty;
-      vm.reset = reset;
-      vm.openList = openList;
-      vm.handleInputEvents = handleInputEvents;
+      iSelect.getReadOnlyValue = getReadOnlyValue;
+      iSelect.handleSelect = handleSelect;
+      iSelect.handleReset = handleReset;
+      iSelect.handleInputEvents = handleInputEvents;
+      iSelect.openList = openList;
+      iSelect.closeList = closeList;
+      iSelect.toggleList = toggleList;
+      iSelect.retrieveProperty = retrieveProperty;
+
+
+      // watch data property for changes
+      s.$watch('iSelect.data', handleRefresh);
+
+      // watch model
+      s.$watch('iSelect.model', handleModelChange);
+
+      // close list on 'closeContextual' event
+      s.$on('closeContextual', closeList);
 
 
       //init
       init();
 
-      // watch data property for changes
-      s.$watch('vm.data', handleRefresh);
-
-      // watch model
-      s.$watch('vm.model', handleModelChange);
-
-      s.$on('closeContextual', function () {
-        vm.listToggle = false;
-        s.$applyAsync();
-      });
-
-
       function init() {
-        vm.items = {
+        iSelect.ready = false;
+
+        if (!iSelect.data) return void 0;
+
+        iSelect.items = {
           returns: [],
           views: []
         };
@@ -93,23 +99,120 @@
         var _promise = _deferred.promise;
         _promise
           .then(function () {
-            angular.forEach(vm.data, function (item) {
-              vm.items.returns.push(retrieveProperty(item, vm.returnAs));
-              vm.items.views.push(retrieveProperty(item, vm.viewAs).toString().toLowerCase());
+            if (typeof iSelect.data === 'object' &&
+              (iSelect.data instanceof Array === false)) {
+              iSelect.listData = iUtils.arrayify(iSelect.data);
+            }else{
+              iSelect.listData = iSelect.data;
+            }
+          })
+          .then(function () {
+            angular.forEach(iSelect.listData, function (item) {
+              iSelect.items.returns.push(retrieveProperty(item, iSelect.returnAs));
+              iSelect.items.views.push(retrieveProperty(item, iSelect.viewAs).toString().toLowerCase());
             });
           }).then(function () {
-            ensureModel();
-            prepareData();
+            initModel();
             setDefault();
+            //decideReadOnly();
+
+            // turn the component on
+            iSelect.ready = true;
           });
         _deferred.resolve();
       }
 
-      function ensureModel() {
+      // DATA
 
+      function initModel() {
         //check if in list
-        if (vm.items.returns.indexOf(vm.model) === -1) {
-          vm.model = undefined;
+        var _index = iSelect.items.returns.indexOf(iSelect.model);
+        if (_index === -1) {
+          iSelect.model = undefined;
+        } else {
+          handleSelect(iSelect.listData[_index]);
+        }
+      }
+
+      function getReadOnlyValue() {
+        return retrieveProperty(iSelect.selected, iSelect.viewAs) || iSelect.placeholder;
+      }
+
+      function setDefault() {
+        if (iSelect.default && iSelect.listData) {
+          handleSelect(iSelect.listData[iSelect.default]);
+        }
+      }
+
+      function decideReadOnly() {
+        // if there is only one item in list and override===false make read-only
+        if (iSelect.listData && iSelect.listData.length === 1) {
+          handleSelect(iSelect.listData[0]);
+          iSelect.readOnly = (iSelect.preventReadOnly) ?
+            false : true;
+        } else {
+          iSelect.readOnly = ($element[0].attributes.readOnly) ?
+            $element[0].attributes.readOnly : false;
+        }
+      }
+
+      // HANDLERS
+      function handleReset() {
+        iSelect.selected = undefined;
+        iSelect.model = undefined;
+        iSelect.searchQuery = undefined;
+        iSelect.listToggle = false;
+      }
+
+      function handleInputEvents() {
+        var _lng = iSelect.listData.length;
+        var _count = 0;
+        var _debounce = 100;
+        iSelect.match = false;
+        iSelect.blurred = true;
+
+        $timeout(function () {
+          angular.forEach(iSelect.listData, function (item) {
+            var _item = retrieveProperty(item, iSelect.viewAs);
+            if (iSelect.searchQuery &&
+              _item.toString().toLowerCase() === iSelect.searchQuery.toString().toLowerCase()) {
+              iSelect.match = true;
+              handleSelect(item);
+            }
+
+            if (++_count === _lng && !iSelect.match && iSelect.blurred) {
+              handleReset();
+            }
+          });
+        }, _debounce)
+      }
+
+      function handleSelect(item) {
+        if (angular.isUndefined(item)) return void 0;
+        var _index = iSelect.listData.indexOf(item);
+        iSelect.selected = item;
+        iSelect.model = (iSelect.returnAs === '$index') ? _index : item[iSelect.returnAs];
+        iSelect.searchQuery = (iSelect.searchable) ? retrieveProperty(iSelect.selected, iSelect.viewAs) : '';
+        iSelect.listToggle = false;
+      }
+
+      function handleModelChange(nVal, oVal) {
+
+        while (iSelect.ready === false) {
+          return void 0;
+        }
+
+        // check if value is in list
+        var _indexOf = iSelect.items.returns.indexOf(nVal);
+        if (_indexOf > -1) {
+          handleSelect(iSelect.listData[_indexOf]);
+          if (iSelect.change) {
+            iSelect.change(nVal);
+          }
+        }
+
+        if (angular.isUndefined(nVal)) {
+          handleReset();
         }
       }
 
@@ -118,16 +221,17 @@
         init();
       }
 
-      function setDefault() {
-        if (vm.default && vm.data) {
-          handleSelect(vm.data[vm.default]);
-        }
+      // UI
+      function openList() {
+        // TODO //$rootScope.$broadcast('closeContextual');
+        if (!iSelect.searchQuery) return void 0;
+        generateList();
+        iSelect.listToggle = true;
       }
 
-      function openList() {
-        if (!vm.searchQuery) return void 0;
-        generateList();
-        vm.listToggle = true;
+      function closeList() {
+        iSelect.listToggle = false;
+        s.$applyAsync();
       }
 
       function generateList() {
@@ -142,77 +246,15 @@
       function toggleList() {
         $rootScope.$broadcast('closeContextual');
         generateList();
-        vm.listToggle = !vm.listToggle;
+        iSelect.listToggle = !iSelect.listToggle;
       }
 
-      function handleSelect(item) {
-        var index = iUtils.getIndex(item, vm.data);
-        vm.selected = item;
-        vm.model = (vm.returnAs === '$index') ? index : item[vm.returnAs];
-        vm.searchQuery = (vm.searchable) ? retrieveProperty(vm.selected, vm.viewAs) : '';
-        vm.listToggle = false;
-      }
-
-      function handleModelChange(nVal, oVal) {
-        vm.searchQuery = nVal;
-        if (angular.isUndefined(nVal)) return void 0;
-
-        angular.forEach(vm.data, function (item, index) {
-          if (item[vm.returnAs] === nVal) {
-            if (typeof vm.change !== 'undefined' && (nVal !== oVal) && (typeof oVal !== 'undefined')) {
-              vm.change(nVal);
-            }
-            handleSelect(item);
-          }
-        });
-      }
-
-
+      // UTILS
       function retrieveProperty(obj, path) {
         if (!obj) return void 0;
         return objectPath.get(obj, path);
       }
 
-      function prepareData() {
-        if (!vm.data) return;
-        if (vm.data.constructor === Array) {
-          vm.isArray = true;
-          vm.isObject = false;
-        } else if (typeof vm.data === 'object' && (vm.data instanceof Array === false)) {
-          vm.isObject = true;
-          vm.isArray = false;
-        }
-      }
-
-      function reset() {
-        vm.selected = undefined;
-        vm.model = undefined;
-        vm.searchQuery = undefined;
-        vm.listToggle = false;
-      }
-
-      function handleInputEvents() {
-        var _lng = (vm.isObject) ? Object.keys(vm.data).length : vm.data.length;
-        var _count = 0;
-        var _debounce = 100;
-        vm.match = false;
-
-        $timeout(function () {
-          angular.forEach(vm.data, function (item) {
-            var _item = retrieveProperty(item, vm.viewAs);
-            if (vm.searchQuery && _item.toString().toLowerCase() === vm.searchQuery.toString().toLowerCase()) {
-              vm.match = true;
-              handleSelect(item);
-            }
-
-            if (++_count === _lng && !vm.match) {
-              vm.searchQuery = undefined;
-              vm.model = undefined;
-              vm.selected = undefined;
-            }
-          });
-        }, _debounce)
-      }
     }
 
     return directive;

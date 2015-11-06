@@ -1,56 +1,46 @@
-<div xid="{{vm.xid}}"
+<div xid="{{iSelect.xid}}"
      class="i-select"
-     style="width:{{vm.size || 100}}%"
-     ng-class="{inline: vm.inline, nolabel: !vm.label}"
-     ng-model="vm.model"
-     i-valid="{{vm.validate}}"
-     name="{{vm.name}}"
-     label="{{vm.label}}">
+     style="width:{{iSelect.size || 100}}%"
+     ng-class="{inline: iSelect.inline, nolabel: !iSelect.label}"
+     ng-model="iSelect.model"
+     i-valid="{{iSelect.validate}}"
+     name="{{iSelect.name}}"
+     label="{{iSelect.label}}">
 
-  <label class="i-field-label" ng-if="vm.label" ng-bind="vm.label"></label>
-  <rb-helper ng-if="vm.tooltip" tooltip="{{vm.tooltip}}"></rb-helper>
-  <div class="read-only" ng-show="vm.readOnly" ng-bind="vm.retrieveProperty(vm.selected, vm.viewAs)"></div>
-  <div ng-hide="vm.readOnly">
-    <div ng-hide="vm.searchable" class="current-value" ng-click="vm.toggleList()">
-      <span>{{ vm.retrieveProperty(vm.selected, vm.viewAs) || vm.placeholder }}</span>
+  <label class="i-field-label" ng-if="iSelect.label" ng-bind="iSelect.label"></label>
+  <rb-helper ng-if="iSelect.tooltip" tooltip="{{iSelect.tooltip}}"></rb-helper>
+  <div class="read-only" ng-show="iSelect.readOnly" ng-bind="iSelect.getReadOnlyValue()"></div>
+  <div ng-hide="iSelect.readOnly">
+    <div ng-hide="iSelect.searchable" class="current-value" ng-click="iSelect.toggleList()">
+      <span>{{ iSelect.getReadOnlyValue() }}</span>
     </div>
-    <div ng-show="vm.searchable" class="i-select-search">
-      <input type="text" ng-model="vm.searchQuery"
-             ng-change="vm.openList()" placeholder="{{vm.placeholder}}" on-enter="vm.handleInputEvents()"
-             ng-blur="vm.handleInputEvents()" i-max-length="{{vm.maxLength}}" i-format="{{vm.format}}" />
+    <div ng-show="iSelect.searchable" class="i-select-search">
+      <input type="text" ng-model="iSelect.searchQuery"
+             ng-change="iSelect.openList()" placeholder="{{iSelect.placeholder}}" on-enter="iSelect.handleInputEvents()"
+             ng-blur="iSelect.handleInputEvents()" i-max-length="{{iSelect.maxLength}}" i-format="{{iSelect.format}}" />
 
-      <div class="reset-button" ng-if="vm.searchable && vm.searchQuery" ng-click="vm.reset()">
+      <div class="reset-button" ng-if="iSelect.searchable && iSelect.searchQuery" ng-click="iSelect.handleReset()">
         <i class="ion-ios-close-empty"></i>
       </div>
     </div>
 
-    <div class="i-select-toggle" ng-click="vm.toggleList()">
-      <div ng-if="!vm.searchable" class="ion-arrow-down-b i-select-toggle-icon"></div>
-      <div ng-if="vm.searchable" class="ion-search i-select-toggle-icon"></div>
+    <div class="i-select-toggle" ng-click="iSelect.toggleList()">
+      <div ng-if="!iSelect.searchable" class="ion-arrow-down-b i-select-toggle-icon"></div>
+      <div ng-if="iSelect.searchable" class="ion-search i-select-toggle-icon"></div>
     </div>
 
-    <div class="i-select-list" ng-show="vm.listToggle" ng-class="{nolabel: !vm.label}">
+    <div class="i-select-list" ng-show="iSelect.listToggle" ng-class="{nolabel: !iSelect.label}">
 
       <!-- isArray-->
-      <div class="is-array" ng-if="vm.isArray">
-        <div ng-if="vm.template" ng-include="vm.template" class="i-select-item" data-index="{{ item[vm.returnAs] || $index}}"
-             ng-repeat="item in vm.data | filter: vm.searchQuery track by $index"
-             ng-click="vm.handleSelect(item)"></div>
-        <div ng-if="!vm.template" class="i-select-item" data-index="{{ item[vm.returnAs] || $index}}"
-             ng-repeat="item in vm.data | filter: vm.searchQuery track by $index" ng-click="vm.handleSelect(item)"
-             ng-bind="vm.retrieveProperty(item, vm.viewAs)"></div>
+      <div class="is-array">
+        <div ng-if="iSelect.template" ng-include="iSelect.template" class="i-select-item" data-index="{{ item[iSelect.returnAs] || $index}}"
+             ng-repeat="item in iSelect.listData | filter: iSelect.searchQuery track by $index"
+             ng-click="iSelect.handleSelect(item)"></div>
+        <div ng-if="!iSelect.template" class="i-select-item" data-index="{{ item[iSelect.returnAs] || $index}}"
+             ng-repeat="item in iSelect.listData | filter: iSelect.searchQuery track by $index" ng-click="iSelect.handleSelect(item)"
+             ng-bind="iSelect.retrieveProperty(item, iSelect.viewAs)"></div>
       </div>
 
-      <!-- isObject-->
-      <div class="is-object" ng-if="vm.isObject">
-        <div ng-if="vm.template" ng-include="vm.template" class="i-select-item" data-index="{{ item[vm.returnAs] || $index}}"
-             ng-repeat="(key, item) in vm.data | filterObject: vm.searchQuery track by $index"
-             ng-click="vm.handleSelect(item)"></div>
-        <div ng-if="!vm.template" class="i-select-item" data-index="{{ item[vm.returnAs] || $index}}"
-             ng-repeat="(key, item) in vm.data | filterObject: vm.searchQuery track by $index"
-             ng-click="vm.handleSelect(item)"> {{ vm.retrieveProperty(item, vm.viewAs) }}
-        </div>
-      </div>
     </div>
   </div>
 </div>

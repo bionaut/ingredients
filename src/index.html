@@ -29,23 +29,40 @@
 <div ng-controller="sampleCtrl as ctrl">
   <h2 class="ui block header">Sample</h2>
 
-  <i-form xid="formular1" name="demoForm" submit="ctrl.handleSubmit(demoForm)" classes="additional classes">
-    <i-error></i-error>
+  <i-form xid="formular1" name="demoForm" classes="additional classes">
     <i-select name="firstSelect"
               xid="select1"
-              data="ctrl.banks"
+              data="ctrl.proxy"
               model="ctrl.nullModel"
               return-as="code"
-              view-as="code"
+              view-as="bankCode"
               searchable="true"
               max-length="4"
-              validate="required"
+              change="ctrl.handleChange"
+              size="30">
+    </i-select>
+
+    <i-select name="firstSelect2"
+              xid="select2"
+              data="ctrl.proxy"
+              model="ctrl.nullModel"
+              return-as="code"
+              view-as="bankCode"
+              prevent-read-only=""
+              change="ctrl.handleChange"
               size="30">
     </i-select>
     <br/>
     <br/>
-    <a ng-click="ctrl.nullModel=undefined">{{ctrl.nullModel}}</a>
     <br/>
+    <br/>
+
+    <p ng-if="ctrl.nullModel===undefined">UNDEFINED</p>
+
+    <p ng-if="ctrl.nullModel===null">NULL</p>
+
+    <p ng-if="ctrl.nullModel">{{ctrl.nullModel}}</p>
+    <button type="button" ng-click="ctrl.nullModel=undefined">RESET</button>
 
     <!--<i-field max-length="4" model="ctrl.testField" debounce="200"></i-field>-->
     <!--<h4>{{ctrl.testField}}</h4>-->

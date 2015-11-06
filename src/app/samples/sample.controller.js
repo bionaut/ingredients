@@ -94,28 +94,17 @@
       }
     };
 
+    ctrl.proxy = undefined;
+
     ctrl.banks = [{
-      "code": "6300",
-      "bankCode": "GEBACZPP",
-      "swift": "GEBACZPP",
-      "name": "FORTIS BANK SA NV, BRUSSELS, BRANCH CZECH REPUBLIC",
+      "code": null,
+      "bankCode": "NULL007",
+      "swift": "NULL007",
+      "name": "AGENT 007 BANK",
       "countryId": "CZ",
       "texts": {
-        "cs": "BNP Paribas Fortis SA/NV, pobočka Česká republika",
-        "en": "BNP Paribas Fortis SA/NV, pobočka Česká republika"
-      },
-      "textId": 1007812,
-      "separeachable": true,
-      "t2Reachable": false
-    }, {
-      "code": "8030",
-      "bankCode": "GENOCZ21",
-      "swift": "GENOCZ21",
-      "name": "RAIFFEISENBANK IM STIFTLAND EG",
-      "countryId": "CZ",
-      "texts": {
-        "cs": "Raiffeisenbank im Stiftland eG pobočka Cheb, odštěpný závod",
-        "en": "Raiffeisenbank im Stiftland eG pobočka Cheb, odštěpný závod"
+        "cs": "AGENT 007",
+        "en": "AGENT 007"
       },
       "textId": 1007813,
       "separeachable": true,
@@ -592,22 +581,25 @@
       "t2Reachable": false
     }];
 
-    ctrl.inactive = [0,2];
-    ctrl.counts = [0,2,10];
-
+    ctrl.inactive = [0, 2];
+    ctrl.counts = [0, 2, 10];
 
     ctrl.sampleData2 = ['Item 1', 'Item 2'];
 
-    ctrl.nullModel = null;
 
-    ctrl.m1 = '5500';
+    ctrl.handleChange = function (test) {
+      console.log('CHANGEEEEEE: ');
+      console.log(test);
+    };
 
     $timeout(function () {
-      ctrl.m1 = '6300';
-      //ctrl.m2 = 1;
-      //ctrl.m3 = 1;
-
-    }, 5000)
+      //ctrl.proxy = {
+      //  5500: {code: '5500', bankCode: 'Raifka'},
+      //  6100: {code: '6100', bankCode: 'Equa'}
+      //};
+      ctrl.proxy = ctrl.banks;
+      ctrl.nullModel = null;
+    }, 1000)
 
   }
 })();
