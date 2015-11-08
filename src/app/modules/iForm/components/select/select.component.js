@@ -45,6 +45,10 @@
       e.on('click mousedown', function (ev) {
         s.iSelect.blurred = false;
         ev.stopPropagation();
+      });
+
+      e.find('input').on('blur', function (ev) {
+        s.iSelect.handleInputEvents();
       })
     }
 
@@ -77,6 +81,11 @@
 
       // watch model
       s.$watch('iSelect.model', handleModelChange);
+
+      // watch searchQuery
+      s.$watch('iSelect.searchQuery', function () {
+        iSelect.blurred = true;
+      });
 
       // close list on 'closeContextual' event
       s.$on('closeContextual', closeList);
@@ -169,11 +178,12 @@
       function handleInputEvents() {
         var _lng = iSelect.listData.length;
         var _count = 0;
-        var _debounce = 100;
         iSelect.match = false;
-        iSelect.blurred = true;
 
         $timeout(function () {
+          if (!iSelect.blurred) {
+            return void 0;
+          }
           angular.forEach(iSelect.listData, function (item) {
             var _item = retrieveProperty(item, iSelect.viewAs);
             if (iSelect.searchQuery &&
@@ -186,7 +196,7 @@
               handleReset();
             }
           });
-        }, _debounce)
+        })
       }
 
       function handleSelect(item) {
@@ -199,6 +209,7 @@
       }
 
       function handleModelChange(nVal, oVal) {
+        iSelect.blurred = true;
 
         while (iSelect.ready === false) {
           return void 0;
