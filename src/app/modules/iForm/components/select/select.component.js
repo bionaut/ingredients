@@ -102,14 +102,16 @@
             if (typeof iSelect.data === 'object' &&
               (iSelect.data instanceof Array === false)) {
               iSelect.listData = iUtils.arrayify(iSelect.data);
-            }else{
+            } else {
               iSelect.listData = iSelect.data;
             }
           })
           .then(function () {
             angular.forEach(iSelect.listData, function (item) {
-              iSelect.items.returns.push(retrieveProperty(item, iSelect.returnAs));
-              iSelect.items.views.push(retrieveProperty(item, iSelect.viewAs).toString().toLowerCase());
+              if (item) {
+                iSelect.items.returns.push(retrieveProperty(item, iSelect.returnAs));
+                iSelect.items.views.push(retrieveProperty(item, iSelect.viewAs).toString().toLowerCase());
+              }
             });
           }).then(function () {
             initModel();
