@@ -15,7 +15,7 @@
     return function (s, e, a) {
       var _conf = a.iMaxLength.trim().split(':');
       var _max = (_conf) ? parseInt(_conf[0]) : undefined;
-      var _maxDecimals =  (_conf[1]) ? parseInt(_conf[1]) : undefined;
+      var _maxDecimals = (_conf[1]) ? parseInt(_conf[1]) : undefined;
 
       if (isNaN(_max) || _max === undefined || _max === null) return void 0;
 
@@ -33,18 +33,21 @@
           (_currentValue.indexOf(',') > -1 ||
           _currentValue.indexOf('.') > -1);
 
+        var _decimalPosition = (isDecimal) ? findDecimal(_currentValue) : 0;
+
         // prevent another dot, comma - only one of those this time :)
-        if (isDecimal && (ev.which === 44 || ev.which === 46)){
+        if (isDecimal && (ev.which === 44 || ev.which === 46)) {
           ev.preventDefault();
           return void 0;
         }
 
-        if(_conf[1] && !isDecimal && _currentValue.length === _max && (ev.which === 44 || ev.which === 46)) {
+        if (_conf[1] && !isDecimal && _currentValue.length === _max && (ev.which === 44 || ev.which === 46)) {
           return void 0;
         }
 
         // is decimal number
-        if (isDecimal && _currentValue.length >= (_max + _maxDecimals + 1)) {
+        // prevent more decimals then in _conf[1]
+        if (isDecimal && _currentValue.length >= (_decimalPosition + _maxDecimals + 1)) {
           if (!isTextSelected(e[0])) ev.preventDefault();
         }
 
@@ -53,9 +56,6 @@
           // only preventDefault when text is not selected
           if (!isTextSelected(e[0])) ev.preventDefault();
         }
-
-
-
       });
     };
   }
@@ -68,6 +68,12 @@
       input.focus();
       return document.selection.createRange().text == input.value;
     }
+  }
+
+  function findDecimal(string) {
+    return (string.indexOf(',') > -1) ?
+      string.indexOf(',') : (string.indexOf('.') > -1) ?
+      string.indexOf('.') : undefined;
   }
 
 })();
