@@ -598,7 +598,7 @@
       //  6100: {code: '6100', bankCode: 'Equa'}
       //};
       ctrl.proxy = ctrl.banks;
-      ctrl.nullModel = null;
+      ctrl.nullModel = '5500';
     }, 1000)
 
   }

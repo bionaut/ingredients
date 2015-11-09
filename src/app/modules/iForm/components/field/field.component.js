@@ -44,6 +44,7 @@
             var required = (a.required) ? ' ng-required="'+a.required+'"' : '';
 
             var label = (a.label) ? '<label ' + labelClasses + ' for="'+ id +'">'+a.label+'</label>' : '';
+            var focusMe = (a.focusMe) ? ' focus-me="'+ a.focusMe+'"' : '';
 
             // custom directives
             var iFormat = (a.format) ? ' i-format="'+ a.format+'"' : '';
@@ -72,6 +73,7 @@
                   required +
                   focus +
                   maxLength +
+                  focusMe +
                 '/>' +
                 '<div class="read-only" ng-show="'+ a.readOnly+'" ng-bind="'+ a.model +'"></div>' +
                 '<div class="fieldErrorMessages" ng-if="!form.$globalErrors" ng-show="form.$submitted">' +

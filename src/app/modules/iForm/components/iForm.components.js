@@ -17,6 +17,7 @@
       'alert.component',
       'error.component',
       'onEnter.component',
-      'iMaxLength.component'
+      'iMaxLength.component',
+      'focusMe.component'
     ]);
 })();
