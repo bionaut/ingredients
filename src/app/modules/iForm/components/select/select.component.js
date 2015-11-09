@@ -219,7 +219,7 @@
         var _indexOf = iSelect.items.returns.indexOf(nVal);
         if (_indexOf > -1) {
           handleSelect(iSelect.listData[_indexOf]);
-          if (iSelect.change) {
+          if (iSelect.change && nVal !== oVal) {
             iSelect.change(nVal);
           }
         }
