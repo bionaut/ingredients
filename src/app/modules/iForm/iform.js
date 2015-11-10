@@ -20,9 +20,10 @@
       var name = a.name || a.id;
       var classes = ' class="i-form ' + (a.classes || '') + ' "';
       var xid = (a.xid) ? ' x-id="' + a.xid + '"': '';
+      var noAutocomplete = (a.noAutocomplete) ? ' autocomplete="off"' : '';
 
       var formElement =
-        '<form ' + classes + xid +
+        '<form ' + classes + xid + noAutocomplete +
           'name="' + name + '"' +
           'id="' + name + '" novalidate' +
                submit +

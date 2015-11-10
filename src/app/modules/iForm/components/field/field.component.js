@@ -45,6 +45,7 @@
 
             var label = (a.label) ? '<label ' + labelClasses + ' for="'+ id +'">'+a.label+'</label>' : '';
             var focusMe = (a.focusMe) ? ' focus-me="'+ a.focusMe+'"' : '';
+            var noAutocomplete = (a.noAutocomplete) ? ' autocomplete="off"' : '';
 
             // custom directives
             var iFormat = (a.format) ? ' i-format="'+ a.format+'"' : '';
@@ -74,6 +75,7 @@
                   focus +
                   maxLength +
                   focusMe +
+                  noAutocomplete +
                 '/>' +
                 '<div class="read-only" ng-show="'+ a.readOnly+'" ng-bind="'+ a.model +'"></div>' +
                 '<div class="fieldErrorMessages" ng-if="!form.$globalErrors" ng-show="form.$submitted">' +
