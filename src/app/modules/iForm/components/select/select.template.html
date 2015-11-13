@@ -17,7 +17,7 @@
     <div ng-show="iSelect.searchable" class="i-select-search">
       <input type="text" ng-model="iSelect.searchQuery"
              ng-change="iSelect.openList()" placeholder="{{iSelect.placeholder}}" on-enter="iSelect.handleInputEvents()"
-             i-max-length="{{iSelect.maxLength}}" i-format="{{iSelect.format}}" />
+             i-max-length="{{iSelect.maxLength}}" i-format="{{iSelect.format}}" ng-click="iSelect.emitEvent()"/>
 
       <div class="reset-button" ng-if="iSelect.searchable && iSelect.searchQuery" ng-click="iSelect.handleReset()">
         <i class="ion-ios-close-empty"></i>

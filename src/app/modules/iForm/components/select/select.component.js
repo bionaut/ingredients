@@ -74,6 +74,7 @@
       iSelect.closeList = closeList;
       iSelect.toggleList = toggleList;
       iSelect.retrieveProperty = retrieveProperty;
+      iSelect.emitEvent = emitEvent;
 
 
       // watch data property for changes
@@ -90,6 +91,8 @@
       // close list on 'closeContextual' event
       s.$on('closeContextual', closeList);
 
+      // generate UID for iSelect
+      iSelect.uid = iUtils.guid();
 
       //init
       init();
@@ -242,9 +245,11 @@
         iSelect.listToggle = true;
       }
 
-      function closeList() {
-        iSelect.listToggle = false;
-        s.$applyAsync();
+      function closeList(event,data) {
+        if (!data.id || data.id !== iSelect.uid){
+          iSelect.listToggle = false;
+          s.$applyAsync();
+        }
       }
 
       function generateList() {
@@ -257,7 +262,7 @@
       }
 
       function toggleList() {
-        $rootScope.$broadcast('closeContextual');
+        $rootScope.$broadcast('closeContextual', {id: iSelect.uid});
         generateList();
         iSelect.listToggle = !iSelect.listToggle;
       }
@@ -266,6 +271,10 @@
       function retrieveProperty(obj, path) {
         if (!obj) return void 0;
         return objectPath.get(obj, path);
+      }
+
+      function emitEvent() {
+        $rootScope.$broadcast('closeContextual', {id: iSelect.uid});
       }
 
     }
