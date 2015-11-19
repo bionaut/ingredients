@@ -128,7 +128,8 @@
           }).then(function () {
             initModel();
             setDefault();
-            decideReadOnly();
+
+            //decideReadOnly();
 
             // turn the component on
             iSelect.ready = true;
