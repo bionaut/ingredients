@@ -10,6 +10,7 @@
        ng-repeat="option in vm.options track by $index"
        ng-click="vm.handleClick(option, $index)"
        ng-class="{active: vm.isActive(option, $index), inactive: vm.isInactive($index)}"
+       style="width: {{100/vm.getDataLength()}}%"
        data-index="{{vm.resolveFn(option, $index)}}">
     <div class="i-switch-label">{{option[vm.viewAs] || option || $index}}</div>
     <div class="count" ng-if="vm.counts[$index] > -1">{{vm.counts[$index]}}</div>
