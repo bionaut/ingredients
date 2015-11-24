@@ -21,7 +21,6 @@
         viewAs: '@',
         searchable: '@?',
         placeholder: '@?',
-        size: '@?',
         template: '@?',
         default: '@?',
         name: '@?',

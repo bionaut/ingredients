@@ -14,7 +14,6 @@
       replace: true,
       scope: {
         options: '=?',
-        size: '@?',
         viewAs: '@?',
         returnAs: '@?',
         model: '=?',

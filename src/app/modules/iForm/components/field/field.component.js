@@ -20,8 +20,6 @@
 
             var a = attrs;
 
-            var size = ' style="width:'+ a.size+'%"';
-
             var debounce = (a.debounce) ? ' ng-model-options="{debounce: '+ a.debounce +'}"': '';
             var fieldClasses = ' class="i-field ' + (a.classes || '') + ' " ng-class="{error: checkErrors()}"';
             var inputClasses = ' class="i-field-input' +( (a.inline) ? ' inline' : '') +( (a.label) ? '' : ' nolabel') + '"';
@@ -53,7 +51,7 @@
 
 
             var html =
-              '<div' + size + fieldClasses + '>' +
+              '<div' + fieldClasses + '>' +
                 label + tooltip +
                 '<input ng-hide="' + a.readOnly + '" ' +
                   onEnter +

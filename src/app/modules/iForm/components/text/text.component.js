@@ -10,7 +10,6 @@
       templateUrl: 'app/modules/iForm/components/text/text.template.html',
       scope:{
         model: '=?',
-        size: '@?',
         label: '@?',
         inline: '@?',
         xid: '@?'
