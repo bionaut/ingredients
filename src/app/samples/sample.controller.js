@@ -68,6 +68,10 @@
       {
         label: 'Some label 2',
         value: 2
+      },
+      {
+        label: 'Some label 2',
+        value: 3
       }
     ];
 
