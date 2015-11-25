@@ -6,6 +6,7 @@
   name="{{vm.name}}">
   <div class="read-only" ng-show="vm.readOnly" ng-bind="vm.viewValue()"></div>
   <div class="i-switch-option"
+       set-width="{{vm.getDataLength()}}"
        ng-show="!vm.readOnly"
        ng-repeat="option in vm.options track by $index"
        ng-click="vm.handleClick(option, $index)"

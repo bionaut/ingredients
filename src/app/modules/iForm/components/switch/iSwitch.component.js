@@ -5,6 +5,7 @@
 (function () {
   'use strict';
   angular.module('iSwitch.component', [])
+    .directive('setWidth', setWidth)
     .directive('iSwitch', iSwitch);
 
   function iSwitch() {
@@ -33,9 +34,10 @@
   }
 
   iSwitchController.$inject = [
-    'iUtils'
+    'iUtils',
+    '$element'
   ];
-  function iSwitchController(iUtils) {
+  function iSwitchController(iUtils, $element) {
     var vm = this;
 
     // methods
@@ -97,4 +99,14 @@
     }
   }
 
+  function setWidth() {
+    return {
+      restrict: "A",
+      link: function (s, e, a) {
+        e.css({
+          width: (100 / a.setWidth) + '%'
+        })
+      }
+    }
+  }
 })();
