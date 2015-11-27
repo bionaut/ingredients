@@ -34,10 +34,9 @@
   }
 
   iSwitchController.$inject = [
-    'iUtils',
-    '$element'
+    'iUtils'
   ];
-  function iSwitchController(iUtils, $element) {
+  function iSwitchController(iUtils) {
     var vm = this;
 
     // methods
@@ -47,6 +46,7 @@
     vm.isInactive = isInactive;
     vm.resolveFn = resolveFn;
     vm.viewValue = resolveView;
+    vm.getCount = getCount;
 
     if (vm.default) {
       handleClick(vm.options[vm.default], vm.default);
@@ -97,7 +97,18 @@
       var option = selectedOption();
       return option ? option[vm.viewAs] || option : null;
     }
+
+    function getCount(index) {
+      if (vm.counts && vm.counts[index] && vm.counts[index] > 50) {
+        return '50+';
+      }else{
+        return vm.counts[index];
+      }
+    }
+
   }
+
+
 
   function setWidth() {
     return {

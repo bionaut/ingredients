@@ -13,6 +13,6 @@
        ng-class="{active: vm.isActive(option, $index), inactive: vm.isInactive($index)}"
        data-index="{{vm.resolveFn(option, $index)}}">
     <div class="i-switch-label">{{option[vm.viewAs] || option || $index}}</div>
-    <div class="count" ng-if="vm.counts[$index] > -1">{{vm.counts[$index]}}</div>
+    <div class="count" ng-if="vm.counts[$index] > -1">{{vm.getCount($index)}}</div>
   </div>
 </div>
