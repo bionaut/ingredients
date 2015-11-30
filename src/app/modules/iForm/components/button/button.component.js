@@ -22,6 +22,11 @@
       controllerAs: 'iButton',
       link: {
         pre: function(scope, element, attrs, form) {
+          if (attrs.type){
+            element[0].attributes.type = attrs.type;
+          }else{
+            element[0].attributes.type = 'button';
+          }
           element.on('click', function(event) {
             if (scope.iDisabled) {
               event.preventDefault();
@@ -37,9 +42,12 @@
     };
   }
 
-  iButtonController.$inject = [];
-  function iButtonController() {
+  iButtonController.$inject = ['$scope'];
+  function iButtonController($scope) {
     var iButton = this;
+
+    iButton.type = $scope.type || 'button';
+
   }
 
 })();
