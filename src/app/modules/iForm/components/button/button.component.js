@@ -23,9 +23,9 @@
       link: {
         pre: function(scope, element, attrs, form) {
           if (attrs.type){
-            element[0].attributes.type = attrs.type;
+            element[0].setAttribute('type', attrs.type);
           }else{
-            element[0].attributes.type = 'button';
+            element[0].setAttribute('type', 'button');
           }
           element.on('click', function(event) {
             if (scope.iDisabled) {
