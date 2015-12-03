@@ -592,8 +592,7 @@
 
 
     ctrl.handleChange = function (test) {
-      console.log('CHANGEEEEEE: ');
-      console.log(test);
+      alert('i changed');
     };
 
     $timeout(function () {

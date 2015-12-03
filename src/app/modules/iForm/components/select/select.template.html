@@ -15,7 +15,7 @@
     </div>
     <div ng-show="iSelect.searchable" class="i-select-search">
       <input type="text" ng-model="iSelect.searchQuery"
-             ng-change="iSelect.openList()" placeholder="{{iSelect.placeholder}}" on-enter="iSelect.handleInputEvents()"
+             ng-change="iSelect.openList()" placeholder="{{iSelect.placeholder}}" on-enter="iSelect.handleInputEvents(true)"
              i-max-length="{{iSelect.maxLength}}" i-format="{{iSelect.format}}" ng-click="iSelect.emitEvent()"/>
 
       <div class="reset-button" ng-if="iSelect.searchable && iSelect.searchQuery" ng-click="iSelect.handleReset()">
@@ -34,9 +34,9 @@
       <div class="is-array">
         <div ng-if="iSelect.template" ng-include="iSelect.template" class="i-select-item" data-index="{{ item[iSelect.returnAs] || $index}}"
              ng-repeat="item in iSelect.listData | filter: iSelect.searchQuery track by $index"
-             ng-click="iSelect.handleSelect(item)"></div>
+             ng-click="iSelect.handleSelect(item, true)"></div>
         <div ng-if="!iSelect.template" class="i-select-item" data-index="{{ item[iSelect.returnAs] || $index}}"
-             ng-repeat="item in iSelect.listData | filter: iSelect.searchQuery track by $index" ng-click="iSelect.handleSelect(item)"
+             ng-repeat="item in iSelect.listData | filter: iSelect.searchQuery track by $index" ng-click="iSelect.handleSelect(item, true)"
              ng-bind="iSelect.retrieveProperty(item, iSelect.viewAs)"></div>
       </div>
 

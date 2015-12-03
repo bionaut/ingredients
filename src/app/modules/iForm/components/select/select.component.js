@@ -47,7 +47,7 @@
       });
 
       e.find('input').on('blur', function (ev) {
-        s.iSelect.handleInputEvents();
+        s.iSelect.handleInputEvents(true);
       })
     }
 
@@ -125,14 +125,14 @@
               }
             });
           }).then(function () {
-            initModel();
-            setDefault();
+          initModel();
+          setDefault();
 
-            //decideReadOnly();
+          //decideReadOnly();
 
-            // turn the component on
-            iSelect.ready = true;
-          });
+          // turn the component on
+          iSelect.ready = true;
+        });
         _deferred.resolve();
       }
 
@@ -178,7 +178,7 @@
         iSelect.listToggle = false;
       }
 
-      function handleInputEvents() {
+      function handleInputEvents(userInput) {
         var _lng = iSelect.listData.length;
         var _count = 0;
         iSelect.match = false;
@@ -192,18 +192,28 @@
             if (iSelect.searchQuery &&
               _item.toString().toLowerCase() === iSelect.searchQuery.toString().toLowerCase()) {
               iSelect.match = true;
-              handleSelect(item);
+              handleSelect(item, true);
             }
 
             if (++_count === _lng && !iSelect.match && iSelect.blurred) {
+              if (userInput) {
+                // call external change function
+                iSelect.change();
+              }
               handleReset();
             }
           });
         })
       }
 
-      function handleSelect(item) {
+      function handleSelect(item, userInput) {
+        if (userInput) {
+          // call external change function
+          iSelect.change(item);
+        }
+
         if (angular.isUndefined(item)) return void 0;
+
         var _index = iSelect.listData.indexOf(item);
         iSelect.selected = item;
         iSelect.model = (iSelect.returnAs === '$index') ? _index : item[iSelect.returnAs];
@@ -222,9 +232,6 @@
         var _indexOf = iSelect.items.returns.indexOf(nVal);
         if (_indexOf > -1) {
           handleSelect(iSelect.listData[_indexOf]);
-          if (iSelect.change && nVal !== oVal) {
-            iSelect.change(nVal);
-          }
         }
 
         if (angular.isUndefined(nVal)) {
@@ -245,8 +252,8 @@
         iSelect.listToggle = true;
       }
 
-      function closeList(event,data) {
-        if (!data.id || data.id !== iSelect.uid){
+      function closeList(event, data) {
+        if (!data.id || data.id !== iSelect.uid) {
           iSelect.listToggle = false;
           s.$applyAsync();
         }
