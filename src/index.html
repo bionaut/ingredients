@@ -31,6 +31,8 @@
 
   <i-form xid="formular1" name="demoForm" classes="additional classes">
 
+    <h3 class="ui block header">Searchable i-select</h3>
+
     <i-select name="firstSelect"
               xid="select1"
               data="ctrl.proxy"
@@ -42,6 +44,19 @@
               change="ctrl.handleChange"
               size="30">
     </i-select>
+
+    <h3 class="ui block header">List items i-select, no change handler</h3>
+
+    <i-select name="secondSelect"
+              xid="select2"
+              data="ctrl.sampleData4"
+              model="ctrl.secondSelectModel"
+              return-as="value"
+              view-as="label"
+              size="30">
+    </i-select>
+
+    <p>{{ctrl.secondSelectModel}}</p>
 
     <!--<i-select name="firstSelect2"-->
               <!--xid="select2"-->
