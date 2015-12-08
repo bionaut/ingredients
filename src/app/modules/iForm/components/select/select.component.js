@@ -196,8 +196,8 @@
             }
 
             if (++_count === _lng && !iSelect.match && iSelect.blurred) {
-              if (userInput) {
-                // call external change function
+              if (userInput && iSelect.change) {
+                // call external change function, if available
                 iSelect.change();
               }
               handleReset();
@@ -207,8 +207,8 @@
       }
 
       function handleSelect(item, userInput) {
-        if (userInput) {
-          // call external change function
+        if (userInput && iSelect.change) {
+          // call external change function, if available
           iSelect.change(item);
         }
 
