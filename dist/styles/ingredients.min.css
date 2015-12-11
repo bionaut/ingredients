@@ -88,60 +88,6 @@
   box-shadow: 0 0 5px -1px #616161;
 }
 
-.i-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0,.5);
-  z-index: 1000;
-  overflow: auto;
-}
-
-.i-modal .i-content {
-  position: relative;
-  top: 10%;
-  left: 50%;
-  width: 50%;
-  min-height: 100px;
-  background-color: #fff;
-  margin-bottom: 10%;
-  transform: translateX(-50%);
-  padding: 20px;
-  overflow: hidden;
-}
-
-.i-modal .i-content .i-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 50px;
-  width: 50px;
-  background-color: #363636;
-  color: #ff0;
-  text-align: center;
-  line-height: 45px;
-  transition: all .2s ease;
-  z-index: 200;
-}
-
-.i-modal .i-content .i-close i {
-  padding: 0;
-  margin: 0;
-}
-
-.i-modal .i-content .i-close:hover {
-  cursor: pointer;
-  animation: pulse .5s ease;
-  background-color: #ff0;
-}
-
-.i-modal .i-content .i-close:hover i {
-  animation: pulse 1s linear;
-  color: #000;
-}
-
 .ng-cloak,
 [ng-cloak] {
   display: none!important;
@@ -198,6 +144,60 @@
 .i-step .dots .dot.active,
 .i-step .dots .dot:active {
   background-color: #ff0;
+}
+
+.i-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+.i-modal .i-content {
+  position: relative;
+  top: 10%;
+  left: 50%;
+  width: 50%;
+  min-height: 100px;
+  background-color: #fff;
+  margin-bottom: 10%;
+  transform: translateX(-50%);
+  padding: 20px;
+  overflow: hidden;
+}
+
+.i-modal .i-content .i-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #363636;
+  color: #ff0;
+  text-align: center;
+  line-height: 45px;
+  transition: all .2s ease;
+  z-index: 200;
+}
+
+.i-modal .i-content .i-close i {
+  padding: 0;
+  margin: 0;
+}
+
+.i-modal .i-content .i-close:hover {
+  cursor: pointer;
+  animation: pulse .5s ease;
+  background-color: #ff0;
+}
+
+.i-modal .i-content .i-close:hover i {
+  animation: pulse 1s linear;
+  color: #000;
 }
 
 .i-alert {
