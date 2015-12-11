@@ -209,7 +209,11 @@
       function handleSelect(item, userInput) {
         if (userInput && iSelect.change) {
           // call external change function, if available
-          iSelect.change(item);
+          if (iSelect.returnAs) {
+            iSelect.change(item[iSelect.returnAs]);
+          } else {
+            iSelect.change(item);
+          }
         }
 
         if (angular.isUndefined(item)) return void 0;
