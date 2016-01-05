@@ -20,6 +20,10 @@
 
             var a = attrs;
 
+            var getMaxLengthAttr = function(maxLength){
+              return ' i-max-length="'.concat(maxLength, '" maxlength="', maxLength,'"');
+            }
+
             var debounce = (a.debounce) ? ' ng-model-options="{debounce: '+ a.debounce +'}"': '';
             var fieldClasses = ' class="i-field ' + (a.classes || '') + ' " ng-class="{error: checkErrors()}"';
             var inputClasses = ' class="i-field-input' +( (a.inline) ? ' inline' : '') +( (a.label) ? '' : ' nolabel') + '"';
@@ -37,8 +41,8 @@
             var tooltip = (a.tooltip) ? ' <rb-helper tooltip="'+ a.tooltip +'"></rb-helper>' : '';
             var onEnter = (a.onEnter) ? ' on-enter="'+ a.onEnter +'"' : '';
             var xid = (a.xid) ? ' xid="'+ a.xid +'"' : '';
-            var maxLength= (a.maxLength) ? ' i-max-length="'+ a.maxLength +'"' : '';
 
+            var maxLength= (a.maxLength) ? getMaxLengthAttr(a.maxLength) : '';
             var required = (a.required) ? ' ng-required="'+a.required+'"' : '';
 
             var label = (a.label) ? '<label ' + labelClasses + ' for="'+ id +'">'+a.label+'</label>' : '';
