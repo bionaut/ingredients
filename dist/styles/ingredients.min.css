@@ -93,59 +93,6 @@
   display: none!important;
 }
 
-.i-step {
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 0%;
-  margin-top: 20px;
-  outline: 1px solid red;
-  *zoom: 1;
-}
-
-.i-step:before,
-.i-step:after {
-  display: table;
-  content: '';
-  display: table;
-}
-
-.i-step:after {
-  clear: both;
-}
-
-.i-step .dots {
-  position: relative;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-}
-
-.i-step .dots .dot {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 10px 5px;
-  background-color: #dcdcdc;
-  box-shadow: 0 1px 4px -1px silver;
-  border-radius: 50%;
-  transition: background-color .1s ease;
-}
-
-.i-step .dots .dot:hover {
-  background-color: #000;
-  cursor: pointer;
-}
-
-.i-step .dots .dot.active,
-.i-step .dots .dot:active {
-  background-color: #ff0;
-}
-
 .i-modal {
   position: fixed;
   top: 0;
@@ -198,6 +145,58 @@
 .i-modal .i-content .i-close:hover i {
   animation: pulse 1s linear;
   color: #000;
+}
+
+.i-step {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-top: 20px;
+  outline: 1px solid red;
+  *zoom: 1;
+}
+
+.i-step:before,
+.i-step:after {
+  content: '';
+  display: table;
+}
+
+.i-step:after {
+  clear: both;
+}
+
+.i-step .dots {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.i-step .dots .dot {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 10px 5px;
+  background-color: #dcdcdc;
+  box-shadow: 0 1px 4px -1px silver;
+  border-radius: 50%;
+  transition: background-color .1s ease;
+}
+
+.i-step .dots .dot:hover {
+  background-color: #000;
+  cursor: pointer;
+}
+
+.i-step .dots .dot.active,
+.i-step .dots .dot:active {
+  background-color: #ff0;
 }
 
 .i-alert {
@@ -265,7 +264,6 @@ button.i-button:active {
 
 .i-field:before,
 .i-field:after {
-  display: table;
   content: '';
   display: table;
 }
@@ -415,11 +413,6 @@ button.i-button:active {
   box-sizing: border-box;
 }
 
-.i-row:before,
-.i-row:after {
-  display: table;
-}
-
 .i-row:last-child {
   margin-right: 0%;
 }
@@ -473,11 +466,6 @@ button.i-button:active {
   margin-left: 0%;
   margin-right: 3%;
   *zoom: 1;
-}
-
-.i-row .i-row-content:before,
-.i-row .i-row-content:after {
-  display: table;
 }
 
 .i-row .i-row-content:last-child {
@@ -535,7 +523,6 @@ button.i-button:active {
 
 .i-select:before,
 .i-select:after {
-  display: table;
   content: '';
   display: table;
 }
@@ -614,11 +601,6 @@ button.i-button:active {
   line-height: 50px;
 }
 
-.i-select .current-value:before,
-.i-select .current-value:after {
-  display: table;
-}
-
 .i-select .current-value:before {
   content: '';
   display: table;
@@ -642,11 +624,6 @@ button.i-button:active {
   margin-left: 0%;
   margin-right: 0%;
   *zoom: 1;
-}
-
-.i-select .i-select-search:before,
-.i-select .i-select-search:after {
-  display: table;
 }
 
 .i-select .i-select-search:before {
@@ -775,7 +752,6 @@ button.i-button:active {
 
 .i-switch:before,
 .i-switch:after {
-  display: table;
   content: '';
   display: table;
 }
@@ -859,7 +835,6 @@ button.i-button:active {
 
 .i-text:before,
 .i-text:after {
-  display: table;
   content: '';
   display: table;
 }
@@ -980,6 +955,18 @@ button.i-button:active {
   margin-right: 0%;
 }
 @charset "UTF-8";
+
+/*!
+  Ionicons, v2.0.0
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+
+  Android-style icons originally built by Google’s
+  Material Design Icons: https://github.com/google/material-design-icons
+  used under CC BY http://creativecommons.org/licenses/by/4.0/
+  Modified icons to fit ionicon’s grid from original.
+*/
 
 @font-face {
   font-family: "Ionicons";
