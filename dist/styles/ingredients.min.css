@@ -23,117 +23,6 @@
   color: red;
 }
 
-.ng-cloak,
-[ng-cloak] {
-  display: none!important;
-}
-
-.i-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0,.5);
-  z-index: 1000;
-  overflow: auto;
-}
-
-.i-modal .i-content {
-  position: relative;
-  top: 10%;
-  left: 50%;
-  width: 50%;
-  min-height: 100px;
-  background-color: #fff;
-  margin-bottom: 10%;
-  transform: translateX(-50%);
-  padding: 20px;
-  overflow: hidden;
-}
-
-.i-modal .i-content .i-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 50px;
-  width: 50px;
-  background-color: #363636;
-  color: #ff0;
-  text-align: center;
-  line-height: 45px;
-  transition: all .2s ease;
-  z-index: 200;
-}
-
-.i-modal .i-content .i-close i {
-  padding: 0;
-  margin: 0;
-}
-
-.i-modal .i-content .i-close:hover {
-  cursor: pointer;
-  animation: pulse .5s ease;
-  background-color: #ff0;
-}
-
-.i-modal .i-content .i-close:hover i {
-  animation: pulse 1s linear;
-  color: #000;
-}
-
-.i-step {
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 0%;
-  margin-top: 20px;
-  outline: 1px solid red;
-  *zoom: 1;
-}
-
-.i-step:before,
-.i-step:after {
-  content: '';
-  display: table;
-}
-
-.i-step:after {
-  clear: both;
-}
-
-.i-step .dots {
-  position: relative;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-}
-
-.i-step .dots .dot {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 10px 5px;
-  background-color: #dcdcdc;
-  box-shadow: 0 1px 4px -1px silver;
-  border-radius: 50%;
-  transition: background-color .1s ease;
-}
-
-.i-step .dots .dot:hover {
-  background-color: #000;
-  cursor: pointer;
-}
-
-.i-step .dots .dot.active,
-.i-step .dots .dot:active {
-  background-color: #ff0;
-}
-
 .i-file-upload {
   position: relative;
   width: 100%;
@@ -197,6 +86,117 @@
   text-align: center;
   color: #fff;
   box-shadow: 0 0 5px -1px #616161;
+}
+
+.i-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+.i-modal .i-content {
+  position: relative;
+  top: 10%;
+  left: 50%;
+  width: 50%;
+  min-height: 100px;
+  background-color: #fff;
+  margin-bottom: 10%;
+  transform: translateX(-50%);
+  padding: 20px;
+  overflow: hidden;
+}
+
+.i-modal .i-content .i-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #363636;
+  color: #ff0;
+  text-align: center;
+  line-height: 45px;
+  transition: all .2s ease;
+  z-index: 200;
+}
+
+.i-modal .i-content .i-close i {
+  padding: 0;
+  margin: 0;
+}
+
+.i-modal .i-content .i-close:hover {
+  cursor: pointer;
+  animation: pulse .5s ease;
+  background-color: #ff0;
+}
+
+.i-modal .i-content .i-close:hover i {
+  animation: pulse 1s linear;
+  color: #000;
+}
+
+.ng-cloak,
+[ng-cloak] {
+  display: none!important;
+}
+
+.i-step {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-top: 20px;
+  outline: 1px solid red;
+  *zoom: 1;
+}
+
+.i-step:before,
+.i-step:after {
+  content: '';
+  display: table;
+}
+
+.i-step:after {
+  clear: both;
+}
+
+.i-step .dots {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.i-step .dots .dot {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 10px 5px;
+  background-color: #dcdcdc;
+  box-shadow: 0 1px 4px -1px silver;
+  border-radius: 50%;
+  transition: background-color .1s ease;
+}
+
+.i-step .dots .dot:hover {
+  background-color: #000;
+  cursor: pointer;
+}
+
+.i-step .dots .dot.active,
+.i-step .dots .dot:active {
+  background-color: #ff0;
 }
 
 .i-alert {
@@ -398,197 +398,6 @@ button.i-button:active {
 .ng-submitted .i-field-input.ng-invalid,
 .ng-submitted .i-field-input.ng-invalid-required,
 .ng-submitted .i-field-input.ng-invalid-pattern {
-  border-color: #ff594d;
-}
-
-.i-row {
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  *zoom: 1;
-  min-height: 70px;
-  margin: 10px 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.i-row:last-child {
-  margin-right: 0%;
-}
-
-.i-row:before,
-.i-row:after {
-  content: '';
-  display: table;
-}
-
-.i-row:after {
-  clear: both;
-}
-
-.i-row .i-row-label {
-  *zoom: 1;
-  float: left;
-  clear: none;
-  width: 17.6%;
-  margin-left: 0%;
-  margin-right: 3%;
-  text-align: center;
-  display: inline;
-}
-
-.i-row .i-row-label:before {
-  content: '';
-  display: table;
-}
-
-.i-row .i-row-label:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.i-row .i-row-label:last-child {
-  margin-right: 0%;
-}
-
-.i-row .i-row-label .required-mark:after {
-  content: "*";
-  color: red;
-}
-
-.i-row .i-row-content {
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 3%;
-  *zoom: 1;
-}
-
-.i-row .i-row-content:last-child {
-  margin-right: 0%;
-}
-
-.i-row .i-row-content:before {
-  content: '';
-  display: table;
-}
-
-.i-row .i-row-content:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.i-row .i-row-content.labeled {
-  *zoom: 1;
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 79.4%;
-  margin-left: 0%;
-  margin-right: 3%;
-}
-
-.i-row .i-row-content.labeled:before {
-  content: '';
-  display: table;
-}
-
-.i-row .i-row-content.labeled:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.i-row .i-row-content.labeled:last-child {
-  margin-right: 0%;
-}
-
-.i-switch {
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 0%;
-  *zoom: 1;
-  height: 70px;
-}
-
-.i-switch:before,
-.i-switch:after {
-  content: '';
-  display: table;
-}
-
-.i-switch:after {
-  clear: both;
-}
-
-.i-switch .i-switch-option {
-  *zoom: 1;
-  clear: none;
-  width: 100%;
-  margin-left: 0%;
-  position: relative;
-  box-sizing: border-box;
-  float: left;
-  height: 50px;
-  margin-top: 20px;
-  box-shadow: 0 0 2px 0 silver;
-  text-align: center;
-  line-height: 50px;
-  border: 3px solid #dbdbdb;
-  margin-right: -1px;
-}
-
-.i-switch .i-switch-option:before {
-  content: '';
-  display: table;
-}
-
-.i-switch .i-switch-option:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.i-switch .i-switch-option:hover {
-  background-color: #fcff00;
-  border: 3px solid #fcff00;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.i-switch .i-switch-option.inactive {
-  background-color: #d3d3d3;
-}
-
-.i-switch .i-switch-option:active {
-  background-color: #fcff00;
-  color: #000;
-  border: 3px solid #cacc00;
-}
-
-.i-switch .i-switch-option.active {
-  background-color: #fcff00;
-  color: #000;
-  border: 3px solid #fdff33;
-}
-
-.i-switch .i-switch-option .count {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 10px;
-}
-
-.ng-submitted .i-switch.ng-invalid .i-switch-search input,
-.ng-submitted .i-switch.ng-invalid-required .i-switch-search input {
   border-color: #ff594d;
 }
 
@@ -820,6 +629,197 @@ button.i-button:active {
 
 .ng-submitted .i-select.ng-invalid .i-select-search input,
 .ng-submitted .i-select.ng-invalid-required .i-select-search input {
+  border-color: #ff594d;
+}
+
+.i-row {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  *zoom: 1;
+  min-height: 70px;
+  margin: 10px 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.i-row:last-child {
+  margin-right: 0%;
+}
+
+.i-row:before,
+.i-row:after {
+  content: '';
+  display: table;
+}
+
+.i-row:after {
+  clear: both;
+}
+
+.i-row .i-row-label {
+  *zoom: 1;
+  float: left;
+  clear: none;
+  width: 17.6%;
+  margin-left: 0%;
+  margin-right: 3%;
+  text-align: center;
+  display: inline;
+}
+
+.i-row .i-row-label:before {
+  content: '';
+  display: table;
+}
+
+.i-row .i-row-label:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.i-row .i-row-label:last-child {
+  margin-right: 0%;
+}
+
+.i-row .i-row-label .required-mark:after {
+  content: "*";
+  color: red;
+}
+
+.i-row .i-row-content {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 3%;
+  *zoom: 1;
+}
+
+.i-row .i-row-content:last-child {
+  margin-right: 0%;
+}
+
+.i-row .i-row-content:before {
+  content: '';
+  display: table;
+}
+
+.i-row .i-row-content:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.i-row .i-row-content.labeled {
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 79.4%;
+  margin-left: 0%;
+  margin-right: 3%;
+}
+
+.i-row .i-row-content.labeled:before {
+  content: '';
+  display: table;
+}
+
+.i-row .i-row-content.labeled:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.i-row .i-row-content.labeled:last-child {
+  margin-right: 0%;
+}
+
+.i-switch {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  *zoom: 1;
+  height: 70px;
+}
+
+.i-switch:before,
+.i-switch:after {
+  content: '';
+  display: table;
+}
+
+.i-switch:after {
+  clear: both;
+}
+
+.i-switch .i-switch-option {
+  *zoom: 1;
+  clear: none;
+  width: 100%;
+  margin-left: 0%;
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  height: 50px;
+  margin-top: 20px;
+  box-shadow: 0 0 2px 0 silver;
+  text-align: center;
+  line-height: 50px;
+  border: 3px solid #dbdbdb;
+  margin-right: -1px;
+}
+
+.i-switch .i-switch-option:before {
+  content: '';
+  display: table;
+}
+
+.i-switch .i-switch-option:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.i-switch .i-switch-option:hover {
+  background-color: #fcff00;
+  border: 3px solid #fcff00;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.i-switch .i-switch-option.inactive {
+  background-color: #d3d3d3;
+}
+
+.i-switch .i-switch-option:active {
+  background-color: #fcff00;
+  color: #000;
+  border: 3px solid #cacc00;
+}
+
+.i-switch .i-switch-option.active {
+  background-color: #fcff00;
+  color: #000;
+  border: 3px solid #fdff33;
+}
+
+.i-switch .i-switch-option .count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 10px;
+}
+
+.ng-submitted .i-switch.ng-invalid .i-switch-search input,
+.ng-submitted .i-switch.ng-invalid-required .i-switch-search input {
   border-color: #ff594d;
 }
 

@@ -21,8 +21,9 @@
             var a = attrs;
 
             var getMaxLengthAttr = function(maxLength){
+              maxLength = String(maxLength);
               var out =  ' i-max-length="'.concat(maxLength, '"');
-              if(maxlength.indefOf(':') < 0){
+              if(maxLength.indexOf(':') < 0){
                 return out.concat(' maxlength="', maxLength,'"');
               }
               return out;
