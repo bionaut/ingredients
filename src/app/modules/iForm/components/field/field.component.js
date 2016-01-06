@@ -21,7 +21,11 @@
             var a = attrs;
 
             var getMaxLengthAttr = function(maxLength){
-              return ' i-max-length="'.concat(maxLength, '" maxlength="', maxLength,'"');
+              var out =  ' i-max-length="'.concat(maxLength, '"');
+              if(maxlength.indefOf(':') < 0){
+                return out.concat(' maxlength="', maxLength,'"');
+              }
+              return out;
             }
 
             var debounce = (a.debounce) ? ' ng-model-options="{debounce: '+ a.debounce +'}"': '';
