@@ -161,6 +161,7 @@
 
 .i-step:before,
 .i-step:after {
+  display: table;
   content: '';
   display: table;
 }
@@ -264,6 +265,7 @@ button.i-button:active {
 
 .i-field:before,
 .i-field:after {
+  display: table;
   content: '';
   display: table;
 }
@@ -416,6 +418,7 @@ button.i-button:active {
 
 .i-select:before,
 .i-select:after {
+  display: table;
   content: '';
   display: table;
 }
@@ -494,6 +497,11 @@ button.i-button:active {
   line-height: 50px;
 }
 
+.i-select .current-value:before,
+.i-select .current-value:after {
+  display: table;
+}
+
 .i-select .current-value:before {
   content: '';
   display: table;
@@ -517,6 +525,11 @@ button.i-button:active {
   margin-left: 0%;
   margin-right: 0%;
   *zoom: 1;
+}
+
+.i-select .i-select-search:before,
+.i-select .i-select-search:after {
+  display: table;
 }
 
 .i-select .i-select-search:before {
@@ -644,6 +657,11 @@ button.i-button:active {
   box-sizing: border-box;
 }
 
+.i-row:before,
+.i-row:after {
+  display: table;
+}
+
 .i-row:last-child {
   margin-right: 0%;
 }
@@ -699,6 +717,11 @@ button.i-button:active {
   *zoom: 1;
 }
 
+.i-row .i-row-content:before,
+.i-row .i-row-content:after {
+  display: table;
+}
+
 .i-row .i-row-content:last-child {
   margin-right: 0%;
 }
@@ -752,6 +775,7 @@ button.i-button:active {
 
 .i-switch:before,
 .i-switch:after {
+  display: table;
   content: '';
   display: table;
 }
@@ -835,6 +859,7 @@ button.i-button:active {
 
 .i-text:before,
 .i-text:after {
+  display: table;
   content: '';
   display: table;
 }
@@ -955,18 +980,6 @@ button.i-button:active {
   margin-right: 0%;
 }
 @charset "UTF-8";
-
-/*!
-  Ionicons, v2.0.0
-  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
-  https://twitter.com/benjsperry  https://twitter.com/ionicframework
-  MIT License: https://github.com/driftyco/ionicons
-
-  Android-style icons originally built by Google’s
-  Material Design Icons: https://github.com/google/material-design-icons
-  used under CC BY http://creativecommons.org/licenses/by/4.0/
-  Modified icons to fit ionicon’s grid from original.
-*/
 
 @font-face {
   font-family: "Ionicons";
