@@ -38,7 +38,9 @@
     }
 
     function required(value) {
-      if (value) {
+      if (typeof value === 'boolean') {
+        return true;
+      } else if (value) {
         return value.toString().length > 0;
       } else {
         return false;
